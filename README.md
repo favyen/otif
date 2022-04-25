@@ -164,26 +164,27 @@ Third, identify the best object detector resolution. To do so, run the object de
 
 	cd otif/pipeline2/
 	ls /path/to/otif-dataset/yolov3/shibuya/ | grep best # see what detectors are available
-	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/1280x704/ 1280x704
-	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/960x544/ 960x544
-	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/736x416/ 736x416
-	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/640x352/ 640x352
-	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/576x320/ 576x320
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/1280x704/ ./1280x704_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/960x544/ ./960x544_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/736x416/ ./736x416_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/640x352/ ./640x352_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/576x320/ ./576x320_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-1280x704/ 1280x704
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-960x544/ 960x544
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-736x416/ 736x416
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-640x352/ 640x352
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-576x320/ 576x320
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-1280x704/ ./1280x704_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-960x544/ ./960x544_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-736x416/ ./736x416_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-640x352/ ./640x352_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/valid/video/ /path/to/otif-dataset/dataset/shibuya/valid/yolov3-576x320/ ./576x320_tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
 	go run eval.go /path/to/otif-dataset/ shibuya valid ./1280x704_tracks/
 	go run eval.go /path/to/otif-dataset/ shibuya valid ./960x544_tracks/
 	go run eval.go /path/to/otif-dataset/ shibuya valid ./736x416_tracks/
 	go run eval.go /path/to/otif-dataset/ shibuya valid ./640x352_tracks/
 	go run eval.go /path/to/otif-dataset/ shibuya valid ./576x320_tracks/
 
-Fourth, apply the best detector on tracker data.
+Fourth, apply the best detector on training and tracker data.
 
+	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/train/video/ /path/to/otif-dataset/dataset/shibuya/train/yolov3-960x544/ 960x544
 	go run 10_detect.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/tracker/video/ /path/to/otif-dataset/dataset/shibuya/tracker/yolov3-960x544/ 960x544
-	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/shibuya/tracker/video/ /path/to/otif-dataset/dataset/shibuya/tracker/yolov3-960x544/ /path/to/otif-dataset/dataset/shibuya/tracker/tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
+	go run iou-tracker2.go /path/to/otif-dataset/ shibuya /path/to/otif-dataset/dataset/shibuya/tracker/video/ /path/to/otif-dataset/dataset/shibuya/tracker/yolov3-960x544/ /path/to/otif-dataset/dataset/shibuya/tracker/tracks/ iou '' '{"Thresholds":[0,1,1,1,1,1,1]}'
 
 Fifth, extract video frames for training the OTIF and baseline proxy models, and train the proxy and tracker models.
 

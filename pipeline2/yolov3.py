@@ -72,7 +72,7 @@ with open(tmp_obj_meta, 'w') as f:
 	f.write(tmp_meta_buf)
 
 # Finally we can load YOLOv3.
-net, class_names, _ = darknet.load_network(tmp_config_path, meta_path, weight_path, batch_size=batch_size)
+net, class_names, _ = darknet.load_network(tmp_config_path, tmp_obj_meta, weight_path, batch_size=batch_size)
 os.remove(tmp_config_path)
 os.remove(tmp_obj_names)
 os.remove(tmp_obj_meta)
